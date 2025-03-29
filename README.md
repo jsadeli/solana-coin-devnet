@@ -35,7 +35,7 @@ Making a Solana cryptocurrency token.
 
 ## Creating a Solana Token
 
-1. First, we need an account/address/keypair that will own the token we're creating:
+1. First, we need an account/wallet/address/keypair that will own the token we're creating:
 
    1. Generate a new random account:
 
@@ -46,7 +46,7 @@ Making a Solana cryptocurrency token.
    1. -or- Vanity account example:
 
       ```sh
-      solana-keygen grind --starts-with cap:1
+      solana-keygen grind --starts-with abc:1
       ```
 
    1. -or- Recover your account via BIP39 words seed phrase:
@@ -68,7 +68,7 @@ Making a Solana cryptocurrency token.
      Example:
 
      ```sh
-     solana config set --keypair cap0123456789abcdefghijklmnopqrstuvwxyz.json
+     solana config set --keypair abc0123456789abcdefghijklmnopqrstuvwxyz.json
      ```
 
    - Ensure that you're on the correct Solana cluster (e.g. devnet):
@@ -88,7 +88,7 @@ Making a Solana cryptocurrency token.
 
 2. Lastly, `spl-token create-token`
 
-## Get SOLs (free in devnet)
+## Get Some SOLs
 
 > [!IMPORTANT]
 > Any actions on the Solana blockchain will require fee/payment using its native currency SOL.
