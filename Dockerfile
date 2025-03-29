@@ -27,8 +27,11 @@ ENV PATH="/root/.local/share/solana/install/active_release/bin:$PATH"
 # Verify Solana CLI installation
 RUN solana --version
 
-# Set up Solana config for Devnet
-RUN solana config set -ud
+# Update the Solana cluster configuration
+# RUN solana config set --url mainnet-beta
+RUN solana config set --url devnet
+# RUN solana config set --url localhost
+# RUN solana config set --url testnet
 
 # Set working directory
 WORKDIR /solana-token
