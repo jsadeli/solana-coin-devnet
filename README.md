@@ -42,7 +42,7 @@ Solana CLI instead (because we can).
      FROM --platform=linux/amd64 debian:bullseye-slim
      ```
 
-2. Build and run the devcontainer (approx. ~2.2 GB image).
+2. Build and run the devcontainer (approx. ~2 GB image).
 3. Let's start making a _fake_ Solana token!
 
 > [!TIP]

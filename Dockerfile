@@ -1,21 +1,6 @@
-# hadolint global ignore=DL3008,DL3015,DL3029,DL3059,DL4006,SC2016
+# hadolint global ignore=DL3029,DL3059,DL4006,SC2016
 # Use a lightweight base image
-FROM --platform=linux/amd64 debian:bullseye-slim
-
-# Set non-interactive frontend for apt
-ENV DEBIAN_FRONTEND=noninteractive
-
-# Install required dependencies and Rust
-RUN apt-get update && apt-get install -y \
-    curl build-essential libssl-dev pkg-config nano \
-    && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# Add Rust to PATH
-ENV PATH="/root/.cargo/bin:$PATH"
-
-# Verify Rust installation
-RUN rustc --version
+FROM --platform=linux/amd64 rust:bullseye
 
 # Install Solana CLI
 # 'anza' is the current active maintainer of the Solana Validator (previously maintained by 'Solana Labs')
@@ -29,10 +14,7 @@ ENV PATH="/root/.local/share/solana/install/active_release/bin:$PATH"
 RUN solana --version
 
 # Update the Solana cluster configuration
-# RUN solana config set --url mainnet-beta
 RUN solana config set --url devnet
-# RUN solana config set --url localhost
-# RUN solana config set --url testnet
 
 # Set working directory
 WORKDIR /solana-token
