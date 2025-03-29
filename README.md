@@ -167,7 +167,7 @@ Several notes to consider:
 > A Token Account keeps track of individual ownership of how many units of a specific type of token
 > (mint account) are owned by a specific address.
 
-## Let's Print Some Money!
+## Let's Print Some Money~
 
 1. Create new units of token (aka _minting_ or _printing money_) via the following CLI command:
 
@@ -190,6 +190,24 @@ Several notes to consider:
       ```
 
    1. [Solana Explorer](https://explorer.solana.com/?cluster=devnet)
+
+## Send and Receive
+
+You can now send or receive this token on the blockchain.
+
+1. Use a hot wallet app for a better UX (e.g. [Phantom](https://phantom.com)).
+
+   For Phantom wallet, go to `Settings` >> `Developer Settings` >> Enable `Testnet Mode`.
+
+1. -or- use the CLI command:
+
+   ```sh
+   spl-token transfer <TOKEN_MINT_ADDRESS> <TOKEN_AMOUNT> <RECIPIENT_WALLET_ADDRESS or RECIPIENT_TOKEN_ACCOUNT_ADDRESS>
+   ```
+
+## Mainnet
+
+It is recommended to disable _mint_ and _freeze_ features for a _real_ token.
 
 ## Useful Commands Overview
 
