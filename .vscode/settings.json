@@ -4,5 +4,6 @@
     "noninteractive",
     "rustc",
     "tlsv"
-  ]
+  ],
+  "sonarlint.analysisExcludesStandalone": "**/Dockerfile"
 }

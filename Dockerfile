@@ -1,3 +1,4 @@
+# hadolint global ignore=DL3008,DL3015,DL3029,DL3059,DL4006,SC2016
 # Use a lightweight base image
 FROM --platform=linux/amd64 debian:bullseye-slim
 
