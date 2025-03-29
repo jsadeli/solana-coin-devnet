@@ -155,7 +155,7 @@ Several notes to consider:
    Example:
 
    ```sh
-   spl-token initialize-metadata ErSnKo6TESqDQSTVY4NNzayLsKVc3Xj1WjwB1n3KTpni "Happy Seal" "HAPPYSEAL" "https://silver-obvious-gerbil-977.mypinata.cloud/ipfs/bafkreifmum6w4d3rij72iti2pp5ozd4aq6mg6lydloia3ahnwry4dsniky"
+   spl-token initialize-metadata ErSnKo6TESqDQSTVY4NNzayLsKVc3Xj1WjwB1n3KTpni "Happy Seal" "HPYSEAL" "https://silver-obvious-gerbil-977.mypinata.cloud/ipfs/bafkreia2yffxlbezujpcspr22lcuw5ywigfj7bfkoodrwivntckp5yngym"
    ```
 
    The token URI is normally a link to offchain metadata you want to associate with the token.
