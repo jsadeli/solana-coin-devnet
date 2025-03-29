@@ -102,21 +102,47 @@ Several notes to consider:
 
 ## Creating a Solana Token
 
-1. Use the `spl-token create-token` command to create a new token ([_mint account_](https://solana.com/docs/core/tokens#mint-account)).
+1. Use the following command to create a new token ([_mint account_](https://solana.com/docs/core/tokens#mint-account))
+   with customizable metadata (such as name, symbol, link to image):
+
+   ```sh
+   spl-token create-token --program-2022 --enable-metadata --decimals 9
+   ```
 
    Example output:
 
    ```text
-   Creating token 3fpcuwwkK9cLXktPuZUnikqDmSjZ9NVsPfsEDeegWjAY under program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA
+   Creating token ErSnKo6TESqDQSTVY4NNzayLsKVc3Xj1WjwB1n3KTpni under program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb
+   To initialize metadata inside the mint, please run `spl-token initialize-metadata ErSnKo6TESqDQSTVY4NNzayLsKVc3Xj1WjwB1n3KTpni <YOUR_TOKEN_NAME> <YOUR_TOKEN_SYMBOL> <YOUR_TOKEN_URI>`, and sign with the mint authority.
 
-   Address:  3fpcuwwkK9cLXktPuZUnikqDmSjZ9NVsPfsEDeegWjAY
+   Address:  ErSnKo6TESqDQSTVY4NNzayLsKVc3Xj1WjwB1n3KTpni
    Decimals:  9
 
-   Signature: fajsHqAasugfvYDtKoovEC2TdTZ6se1kxndpEeFSEfZyTEZZ5E8yRL4ngWFTGH5ewH389ZhtwedgQvBGdz3adxZ
+   Signature: 5jwaf6zqzBEtuREkJc5Fd53QpRMf6ixtVMW6td3wArFA15u1VP2cTpbHJo1kLRx8tSHAgLzM4tqvbigem2q91Toz
    ```
 
    - You can now use the [Solana Explorer](https://explorer.solana.com/?cluster=devnet) to inspect
-     by specifying the address (e.g. `3fpcuwwkK9cLXktPuZUnikqDmSjZ9NVsPfsEDeegWjAY`).
+     by specifying the address (e.g. `ErSnKo6TESqDQSTVY4NNzayLsKVc3Xj1WjwB1n3KTpni`).
+
+1. Customize your new token:
+
+   - Custom square image of 512x512 that is less than 100 KB (e.g. use MS-Paint or AI).
+   - Upload to a publicly accessible cloud storage (e.g. [Pinata](https://pinata.cloud/)).
+   - Create a metadata JSON file; an example of the JSON format [here](https://raw.githubusercontent.com/solana-developers/opos-asset/main/assets/DeveloperPortal/metadata.json).
+
+1. Customize your new token (via its metadata):
+
+   ```sh
+   spl-token initialize-metadata <TOKEN_MINT_ADDRESS> <YOUR_TOKEN_NAME> <YOUR_TOKEN_SYMBOL> <YOUR_TOKEN_URI>
+   ```
+
+   Example:
+
+   ```sh
+   spl-token initialize-metadata ErSnKo6TESqDQSTVY4NNzayLsKVc3Xj1WjwB1n3KTpni "Happy Seal" "HAPPYSEAL" "https://silver-obvious-gerbil-977.mypinata.cloud/ipfs/bafkreifmum6w4d3rij72iti2pp5ozd4aq6mg6lydloia3ahnwry4dsniky"
+   ```
+
+   The token URI is normally a link to offchain metadata you want to associate with the token.
 
 1. To hold units of a particular token, you must create a [token account](https://solana.com/vi/docs/core/tokens#token-account).
 
@@ -127,13 +153,13 @@ Several notes to consider:
    Example:
 
    ```sh
-   spl-token create-account 3fpcuwwkK9cLXktPuZUnikqDmSjZ9NVsPfsEDeegWjAY
+   spl-token create-account ErSnKo6TESqDQSTVY4NNzayLsKVc3Xj1WjwB1n3KTpni
    ```
 
    ```text
-   Creating account BFpuBrB7KmdQKbmNFULNhZkbgVVerkgT8hU4EhR9LTUF
+   Creating account 2vMFTUUXMVvXCGbr2KwaZqrfacjz1uAFRKs179LY3eNs
 
-   Signature: 2xowP5w1t41bccDfEuT7cx5G3B1t2wVmDVF2xPZhMgRQMG5fhWXQCPgbdZXSf8y9NapU19i485sjre3kPx9zVw4F
+   Signature: 3wKiJedaiPgBrRV9KM647QMXipKeLccWEyEaPZrtpTUKMvETSAcMUgWrDYWnbGnfPWoZEVoKzPBu4vv42BmMKhSo
    ```
 
 ## Let's Print Some Money
@@ -147,7 +173,7 @@ Several notes to consider:
    Example:
 
    ```sh
-   spl-token mint 3fpcuwwkK9cLXktPuZUnikqDmSjZ9NVsPfsEDeegWjAY 1000
+   spl-token mint ErSnKo6TESqDQSTVY4NNzayLsKVc3Xj1WjwB1n3KTpni 1000
    ```
 
 1. Verify the newly minted (_printed money_) tokens via:
