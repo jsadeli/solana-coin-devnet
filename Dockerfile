@@ -18,6 +18,7 @@ ENV PATH="/root/.cargo/bin:$PATH"
 RUN rustc --version
 
 # Install Solana CLI
+# 'anza' is the current active maintainer of the Solana Validator (previously maintained by 'Solana Labs')
 RUN curl -sSfL https://release.anza.xyz/stable/install | sh \
     && echo 'export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"' >> ~/.bashrc
 

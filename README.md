@@ -9,6 +9,8 @@ Making a Solana cryptocurrency token.
     with a gas fee that historically reached 2,000 gwei (~$200)[^1] in 2021.
   - As a comparison, Solana's transactions are typically completed in under 1s with fees of less than $0.01.
 
+[^1]: NFT Craze and DeFi boom on [12 May 2021](https://ycharts.com/indicators/ethereum_average_gas_price)
+
 ## Getting Started
 
 There are no-code web apps that can help you with making this token, but we are going to use the
@@ -26,15 +28,14 @@ Solana CLI instead (because we can).
      FROM --platform=linux/amd64 debian:bullseye-slim
      ```
 
-   - _anza_ is the current active maintainer of the Solana Validator (previously maintained by
-     _Solana Labs_ team).
-
-1. Build and run the devcontainer (approx. ~2.2 GB image).
-1. Let's start making a _fake_ Solana token!
+2. Build and run the devcontainer (approx. ~2.2 GB image).
+3. Let's start making a _fake_ Solana token!
 
 > [!TIP]
 > While it's not strictly necessary to use a Docker and/or devcontainer, I prefer to keep my
 > machine environment clean and separated among various different projects.
+
+[^2]: As of release [v2.2.4](https://github.com/anza-xyz/agave/releases/tag/v2.2.4) (2025-03-29).
 
 ## Creating a Wallet
 
@@ -182,6 +183,3 @@ Several notes to consider:
 - [Solana Explorer](https://explorer.solana.com)
 - [Solana Playground](https://beta.solpg.io/)
 - [sol4k: a Kotlin client for Solana](https://sol4k.org/)
-
-[^1]: NFT Craze and DeFi boom on [12 May 2021](https://ycharts.com/indicators/ethereum_average_gas_price)
-[^2]: As of release [v2.2.4](https://github.com/anza-xyz/agave/releases/tag/v2.2.4) (2025-03-29).
