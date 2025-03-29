@@ -92,18 +92,19 @@ Several notes to consider:
 
 ## Get Some SOLs
 
-> [!IMPORTANT]
-> Any actions on the Solana blockchain will require fee/payment using its native currency SOL.
-
 - Check the account's current balance using the `solana balance` command.
 - Obtain free SOLs (devnet only) via:
   1. `solana airdrop 1` CLI command (to get airdropped 1 SOL).
   1. -or- [Solana Devnet Faucet](https://faucet.solana.com/).
 
+> [!IMPORTANT]
+> Any actions on the Solana blockchain will require fee/payment using its native currency SOL.
+> Luckily it is free in _devnet_ (unlike in _mainnet_/production).
+
 ## Creating a Solana Token
 
 1. Use the following command to create a new token ([_mint account_](https://solana.com/docs/core/tokens#mint-account))
-   with customizable metadata (such as name, symbol, link to image):
+   **with customizable metadata** (such as name, symbol, link to image):
 
    ```sh
    spl-token create-token --program-2022 --enable-metadata --decimals 9
@@ -121,16 +122,17 @@ Several notes to consider:
    Signature: 5jwaf6zqzBEtuREkJc5Fd53QpRMf6ixtVMW6td3wArFA15u1VP2cTpbHJo1kLRx8tSHAgLzM4tqvbigem2q91Toz
    ```
 
-   - You can now use the [Solana Explorer](https://explorer.solana.com/?cluster=devnet) to inspect
-     by specifying the address (e.g. `ErSnKo6TESqDQSTVY4NNzayLsKVc3Xj1WjwB1n3KTpni`).
+   You can now use the [Solana Explorer](https://explorer.solana.com/?cluster=devnet) to inspect
+   by specifying the address (e.g. `ErSnKo6TESqDQSTVY4NNzayLsKVc3Xj1WjwB1n3KTpni`).
 
-1. Customize your new token:
-
-   - Custom square image of 512x512 that is less than 100 KB (e.g. use MS-Paint or AI).
+1. Let's add some customizations to our new token:
+   - Think of a name, symbol, description, and the image/logo for the token.
+     - Try to keep the symbol as short as possible (e.g. 3–4 uppercase characters).
+     - Custom square image of 512x512 that is less than 100 KB (e.g. use MS-Paint or AI).
    - Upload to a publicly accessible cloud storage (e.g. [Pinata](https://pinata.cloud/)).
    - Create a metadata JSON file; an example of the JSON format [here](https://raw.githubusercontent.com/solana-developers/opos-asset/main/assets/DeveloperPortal/metadata.json).
 
-1. Customize your new token (via its metadata):
+1. Apply those customizations (metadata) to the new token on the blockchain:
 
    ```sh
    spl-token initialize-metadata <TOKEN_MINT_ADDRESS> <YOUR_TOKEN_NAME> <YOUR_TOKEN_SYMBOL> <YOUR_TOKEN_URI>
@@ -145,6 +147,8 @@ Several notes to consider:
    The token URI is normally a link to offchain metadata you want to associate with the token.
 
 1. To hold units of a particular token, you must create a [token account](https://solana.com/vi/docs/core/tokens#token-account).
+   A token account is required for a user to hold tokens. A user will have at least one token account
+   for every type of token they own.
 
    ```sh
    spl-token create-account [OPTIONS] <TOKEN_ADDRESS>
@@ -156,13 +160,14 @@ Several notes to consider:
    spl-token create-account ErSnKo6TESqDQSTVY4NNzayLsKVc3Xj1WjwB1n3KTpni
    ```
 
-   ```text
-   Creating account 2vMFTUUXMVvXCGbr2KwaZqrfacjz1uAFRKs179LY3eNs
+> [!NOTE]
+> A Mint Account represents a specific type of token and stores global metadata about the token such
+> as the total supply and mint authority (address authorized to create new units of a token).
+>
+> A Token Account keeps track of individual ownership of how many units of a specific type of token
+> (mint account) are owned by a specific address.
 
-   Signature: 3wKiJedaiPgBrRV9KM647QMXipKeLccWEyEaPZrtpTUKMvETSAcMUgWrDYWnbGnfPWoZEVoKzPBu4vv42BmMKhSo
-   ```
-
-## Let's Print Some Money
+## Let's Print Some Money!
 
 1. Create new units of token (aka _minting_ or _printing money_) via the following CLI command:
 
@@ -186,26 +191,32 @@ Several notes to consider:
 
    1. [Solana Explorer](https://explorer.solana.com/?cluster=devnet)
 
-## Useful Commands
+## Useful Commands Overview
 
-| Command                                                | Description                                     |
-|--------------------------------------------------------|-------------------------------------------------|
-| `solana config get`                                    | get the current configuration.                  |
-| `solana config set --keypair ${HOME}/new-keypair.json` | set the default keypair.                        |
-| `solana address`                                       | get the public key pair.                        |
-| `solana balance`                                       | check the current SOL balance for this account. |
-| `solana airdrop`                                       | request SOL from a faucet.                      |
-
-## Core Concepts
-
-### Accounts Relationship
-
-![Account Relationship](https://solana.com/assets/docs/core/tokens/token-account-relationship.svg)
+| Command                                                                                                     | Description                                             |
+|-------------------------------------------------------------------------------------------------------------|---------------------------------------------------------|
+| `solana-keygen <SUBCOMMAND>`                                                                                | Solana key generation utility.                          |
+| `solana config get [CONFIG_FIELD]`                                                                          | Get current config settings.                            |
+| `solana config set --keypair ${HOME}/new-keypair.json`                                                      | Set a config setting.                                   |
+| `solana address`                                                                                            | Get your public key.                                    |
+| `solana balance [ACCOUNT_ADDRESS]`                                                                          | Get your balance.                                       |
+| `solana airdrop <AMOUNT> [RECIPIENT_ADDRESS]`                                                               | Request SOL from a faucet.                              |
+| `spl-token create-token [OPTIONS] [--] [TOKEN_KEYPAIR]`                                                     | Create a new token.                                     |
+| `spl-token initialize-metadata <TOKEN_MINT_ADDRESS> <YOUR_TOKEN_NAME> <YOUR_TOKEN_SYMBOL> <YOUR_TOKEN_URI>` | Initialize metadata extension on a token mint.          |
+| `spl-token update-metadata [OPTIONS] <TOKEN_MINT_ADDRESS> <FIELD_NAME> [VALUE_STRING]`                      | Update metadata on a token mint that has the extension. |
+| `spl-token create-account [OPTIONS] <TOKEN_MINT_ADDRESS> [ACCOUNT_KEYPAIR]`                                 | Create a new token account.                             |
+| `spl-token mint <TOKEN_ADDRESS> <TOKEN_AMOUNT> [--] [RECIPIENT_TOKEN_ACCOUNT_ADDRESS]`                      | Mint new tokens.                                        |
+| `spl-token supply <TOKEN_MINT_ADDRESS>`                                                                     | Get token supply.                                       |
+| `spl-token burn <TOKEN_ACCOUNT_ADDRESS> <TOKEN_AMOUNT>`                                                     | Burn tokens from an account.                            |
 
 ## References
 
 - [Solana Docs](https://solana.com/docs/intro/installation)
+  - [Core Concepts: Accounts](https://solana.com/docs/core/accounts)
+  - [Core Concepts: Tokens](https://solana.com/docs/core/tokens)
 - [anza Docs](https://docs.anza.xyz/cli/intro)
 - [Solana Explorer](https://explorer.solana.com)
 - [Solana Playground](https://beta.solpg.io/)
+- [create your own Solana Token...in the terminal (2025 edition)](https://youtu.be/L4ASwqLZVV0?si=-h4-SkLUO_hvZwmq)
+- [Create a Solana Token, NetworkChuck](https://blog.networkchuck.com/posts/create-a-solana-token/)
 - [sol4k: a Kotlin client for Solana](https://sol4k.org/)
