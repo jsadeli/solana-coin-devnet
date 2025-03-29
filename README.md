@@ -11,6 +11,9 @@ Making a Solana cryptocurrency token.
 
 ## Getting Started
 
+There are no-code web apps that can help you with making this token, but we are going to use the
+Solana CLI instead (because we can).
+
 1. Use the pre-configured [Dockerfile](Dockerfile) to run a [devcontainer](.devcontainer/devcontainer.json).
 
    - Setup the latest stable versions of Rust and Solana CLI.
@@ -27,66 +30,64 @@ Making a Solana cryptocurrency token.
      _Solana Labs_ team).
 
 1. Build and run the devcontainer (approx. ~2.2 GB image).
-1. Let's Start making a _fake_ Solana token!
+1. Let's start making a _fake_ Solana token!
 
-> [!NOTE]
+> [!TIP]
 > While it's not strictly necessary to use a Docker and/or devcontainer, I prefer to keep my
 > machine environment clean and separated among various different projects.
 
-## Creating a Solana Token
+## Creating a Wallet
 
-1. First, we need an account/wallet/address/keypair that will own the token we're creating:
+First, we need an account/wallet/address/keypair that will own the token we're creating:
 
-   1. Generate a new random account:
+1. Generate a new random account:
 
-      ```sh
-      solana-keygen new
-      ```
+   ```sh
+   solana-keygen new
+   ```
 
-   1. -or- Vanity account example:
+1. -or- Vanity account example:
 
-      ```sh
-      solana-keygen grind --starts-with abc:1
-      ```
+   ```sh
+   solana-keygen grind --starts-with cap:1
+   ```
 
-   1. -or- Recover your account via BIP39 words seed phrase:
+1. -or- Recover your account via BIP39 words seed phrase:
 
-      ```sh
-      solana-keygen recover
-      ```
+   ```sh
+   solana-keygen recover
+   ```
 
-   Several notes to consider:
+Several notes to consider:
 
-   - Verify config:
+- Verify config:
 
-     ```sh
-     solana config get
-     ```
+  ```sh
+  solana config get
+  ```
 
-   - If generated vanity keypair, ensure that this newly generated keypair is set as the default.
+- If generated vanity keypair, ensure that this newly generated keypair is set as the default.
 
-     Example:
+  Example:
 
-     ```sh
-     solana config set --keypair abc0123456789abcdefghijklmnopqrstuvwxyz.json
-     ```
+  ```sh
+  solana config set --keypair caph7MHe2AJzBGDd3voEgvCBrqrqBJ7oCo9Tm1B2NcU.json
+  ```
 
-   - Ensure that you're on the correct Solana cluster (e.g. devnet):
+- Ensure that you're on the correct Solana cluster (e.g. devnet):
 
-     ```sh
-     solana config set --url devnet
-     ```
+  ```sh
+  solana config set --url devnet
+  ```
 
-     fyi, other known clusters:
+  fyi, other known clusters:
 
-     ```sh
-     solana config set --url mainnet-beta
-     solana config set --url devnet
-     solana config set --url localhost
-     solana config set --url testnet
-     ```
-
-2. Lastly, `spl-token create-token`
+  ```sh
+  solana config set --url mainnet-beta
+  solana config set --url devnet
+  solana config set --url localhost
+  solana config set --url testnet
+  ```
 
 ## Get Some SOLs
 
@@ -95,8 +96,68 @@ Making a Solana cryptocurrency token.
 
 - Check the account's current balance using the `solana balance` command.
 - Obtain free SOLs (devnet only) via:
-  1. `solana airdrop 1` command (to get airdropped 1 SOL).
+  1. `solana airdrop 1` CLI command (to get airdropped 1 SOL).
   1. -or- [Solana Devnet Faucet](https://faucet.solana.com/).
+
+## Creating a Solana Token
+
+1. Use the `spl-token create-token` command to create a new token ([_mint account_](https://solana.com/docs/core/tokens#mint-account)).
+
+   Example output:
+
+   ```text
+   Creating token 3fpcuwwkK9cLXktPuZUnikqDmSjZ9NVsPfsEDeegWjAY under program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA
+
+   Address:  3fpcuwwkK9cLXktPuZUnikqDmSjZ9NVsPfsEDeegWjAY
+   Decimals:  9
+
+   Signature: fajsHqAasugfvYDtKoovEC2TdTZ6se1kxndpEeFSEfZyTEZZ5E8yRL4ngWFTGH5ewH389ZhtwedgQvBGdz3adxZ
+   ```
+
+   - You can now use the [Solana Explorer](https://explorer.solana.com/?cluster=devnet) to inspect
+     by specifying the address (e.g. `3fpcuwwkK9cLXktPuZUnikqDmSjZ9NVsPfsEDeegWjAY`).
+
+1. To hold units of a particular token, you must create a [token account](https://solana.com/vi/docs/core/tokens#token-account).
+
+   ```sh
+   spl-token create-account [OPTIONS] <TOKEN_ADDRESS>
+   ```
+
+   Example:
+
+   ```sh
+   spl-token create-account 3fpcuwwkK9cLXktPuZUnikqDmSjZ9NVsPfsEDeegWjAY
+   ```
+
+   ```text
+   Creating account BFpuBrB7KmdQKbmNFULNhZkbgVVerkgT8hU4EhR9LTUF
+
+   Signature: 2xowP5w1t41bccDfEuT7cx5G3B1t2wVmDVF2xPZhMgRQMG5fhWXQCPgbdZXSf8y9NapU19i485sjre3kPx9zVw4F
+   ```
+
+## Let's Print Some Money
+
+1. Create new units of token (aka _minting_ or _printing money_) via the following CLI command:
+
+   ```sh
+   spl-token mint [OPTIONS] <TOKEN_ADDRESS> <TOKEN_AMOUNT> [--] [RECIPIENT_TOKEN_ACCOUNT_ADDRESS]
+   ```
+
+   Example:
+
+   ```sh
+   spl-token mint 3fpcuwwkK9cLXktPuZUnikqDmSjZ9NVsPfsEDeegWjAY 1000
+   ```
+
+1. Verify the newly minted (_printed money_) tokens via:
+
+   1. CLI example:
+
+      ```sh
+      spl-token supply 3fpcuwwkK9cLXktPuZUnikqDmSjZ9NVsPfsEDeegWjAY
+      ```
+
+   1. [Solana Explorer](https://explorer.solana.com/?cluster=devnet)
 
 ## Useful Commands
 
@@ -108,11 +169,19 @@ Making a Solana cryptocurrency token.
 | `solana balance`                                       | check the current SOL balance for this account. |
 | `solana airdrop`                                       | request SOL from a faucet.                      |
 
+## Core Concepts
+
+### Accounts Relationship
+
+![Account Relationship](https://solana.com/assets/docs/core/tokens/token-account-relationship.svg)
+
 ## References
 
-- [Solana docs](https://solana.com/docs/intro/installation)
-- [anza docs](https://docs.anza.xyz/cli/intro)
-- [Solana devnet explorer](https://explorer.solana.com/?cluster=devnet)
+- [Solana Docs](https://solana.com/docs/intro/installation)
+- [anza Docs](https://docs.anza.xyz/cli/intro)
+- [Solana Explorer](https://explorer.solana.com)
+- [Solana Playground](https://beta.solpg.io/)
+- [sol4k: a Kotlin client for Solana](https://sol4k.org/)
 
 [^1]: NFT Craze and DeFi boom on [12 May 2021](https://ycharts.com/indicators/ethereum_average_gas_price)
 [^2]: As of release [v2.2.4](https://github.com/anza-xyz/agave/releases/tag/v2.2.4) (2025-03-29).
