@@ -1,6 +1,6 @@
 # Solana Token
 
-Making a Solana cryptocurrency token.
+Let's make a [Solana](https://solana.com) cryptocurrency token.
 
 - Why? Because it's fun!
 - Why Solana? Because it's a very fast and cheap blockchain network, also it runs on Rust
