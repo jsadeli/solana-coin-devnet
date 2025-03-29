@@ -1,5 +1,7 @@
 # Solana Token
 
+![Happy Seal](https://raw.githubusercontent.com/jsadeli/solana-coin-devnet/refs/heads/main/public/happyseal-coin.jpg)
+
 Let's make a [Solana](https://solana.com) cryptocurrency token.
 
 - Why? Because it's fun!
