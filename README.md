@@ -200,7 +200,7 @@ Several notes to consider:
    1. CLI example:
 
       ```sh
-      spl-token supply 3fpcuwwkK9cLXktPuZUnikqDmSjZ9NVsPfsEDeegWjAY
+      spl-token supply ErSnKo6TESqDQSTVY4NNzayLsKVc3Xj1WjwB1n3KTpni
       ```
 
    1. [Solana Explorer](https://explorer.solana.com/?cluster=devnet)
