@@ -11,6 +11,20 @@ Let's make a [Solana](https://solana.com) cryptocurrency token.
 
 [^1]: NFT Craze and DeFi boom on [12 May 2021](https://ycharts.com/indicators/ethereum_average_gas_price)
 
+## Table of Contents
+
+- [Solana Token](#solana-token)
+  - [Table of Contents](#table-of-contents)
+  - [Getting Started](#getting-started)
+  - [Creating a Wallet](#creating-a-wallet)
+  - [Get Some SOLs](#get-some-sols)
+  - [Creating a Solana Token](#creating-a-solana-token)
+  - [Let's Print Some Money~](#lets-print-some-money)
+  - [Send and Receive](#send-and-receive)
+  - [Mainnet](#mainnet)
+  - [Useful Commands Overview](#useful-commands-overview)
+  - [References](#references)
+
 ## Getting Started
 
 There are no-code web apps that can help you with making this token, but we are going to use the
