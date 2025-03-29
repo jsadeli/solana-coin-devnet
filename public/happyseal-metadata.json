@@ -1,0 +1,12 @@
+{
+  "name": "Happy Seal",
+  "symbol": "HPYSEAL",
+  "description": "This is a happy seal!",
+  "image": "https://silver-obvious-gerbil-977.mypinata.cloud/ipfs/bafkreihqshet6ee43jevwmrtxpp6cro4w2ufsut7vzj2ite2ylzze3eil4",
+  "attributes": [
+    {
+      "trait_type": "Item",
+      "value": "Developer Portal"
+    }
+  ]
+}
