@@ -41,7 +41,7 @@ Solana CLI instead (because we can).
      for a clean virtualization setup. For those running on x86/64, you can safely remove this flag.
 
      ```dockerfile
-     FROM --platform=linux/amd64 debian:bullseye-slim
+     FROM --platform=linux/amd64 rust:bookworm
      ```
 
 2. Build and run the devcontainer (approx. ~2 GB image).

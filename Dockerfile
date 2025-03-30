@@ -1,6 +1,6 @@
 # hadolint global ignore=DL3029,DL3059,DL4006,SC2016
 # Use a lightweight base image
-FROM --platform=linux/amd64 rust:bullseye
+FROM --platform=linux/amd64 rust:bookworm
 
 # Install Solana CLI
 # 'anza' is the current active maintainer of the Solana Validator (previously maintained by 'Solana Labs')
