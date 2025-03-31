@@ -26,6 +26,12 @@ Let's make a [Solana](https://solana.com) cryptocurrency token.
   - [Mainnet](#mainnet)
   - [Useful Commands Overview](#useful-commands-overview)
   - [References](#references)
+    - [Versions](#versions)
+      - [`lsb_release -a`](#lsb_release--a)
+      - [`rustc --version`](#rustc---version)
+      - [`solana --version`](#solana---version)
+      - [`spl-token --version`](#spl-token---version)
+    - [Documentations](#documentations)
 
 ## Getting Started
 
@@ -205,7 +211,7 @@ Several notes to consider:
       spl-token supply ErSnKo6TESqDQSTVY4NNzayLsKVc3Xj1WjwB1n3KTpni
       ```
 
-   1. [Solana Explorer](https://explorer.solana.com/?cluster=devnet)
+   1. -or- [Solana Explorer](https://explorer.solana.com/?cluster=devnet)
 
 ## Send and Receive
 
@@ -224,6 +230,9 @@ You can now send or receive this token on the blockchain.
 ## Mainnet
 
 It is recommended to disable _mint_ and _freeze_ features for a _real_ token.
+
+> [!CAUTION]
+> The action to disable _mint_ and/or _freeze_ is permanent.
 
 ## Useful Commands Overview
 
@@ -244,6 +253,38 @@ It is recommended to disable _mint_ and _freeze_ features for a _real_ token.
 | `spl-token burn <TOKEN_ACCOUNT_ADDRESS> <TOKEN_AMOUNT>`                                                     | Burn tokens from an account.                            |
 
 ## References
+
+### Versions
+
+#### `lsb_release -a`
+
+```text
+No LSB modules are available.
+Distributor ID: Debian
+Description:    Debian GNU/Linux 12 (bookworm)
+Release:        12
+Codename:       bookworm
+```
+
+#### `rustc --version`
+
+```text
+rustc 1.85.1 (4eb161250 2025-03-15)
+```
+
+#### `solana --version`
+
+```text
+solana-cli 2.1.17 (src:4adcd0f2; feat:3271415109, client:Agave)
+```
+
+#### `spl-token --version`
+
+```text
+spl-token-cli 5.1.0
+```
+
+### Documentations
 
 - [Solana Docs](https://solana.com/docs/intro/installation)
   - [Core Concepts: Accounts](https://solana.com/docs/core/accounts)
