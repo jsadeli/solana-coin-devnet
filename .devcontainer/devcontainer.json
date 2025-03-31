@@ -10,7 +10,10 @@
   },
   "customizations": {
     "vscode": {
-      "extensions": ["bierner.github-markdown-preview"]
+      "extensions": [
+        "bierner.github-markdown-preview",
+        "ms-azuretools.vscode-docker"
+      ]
     }
   },
 
