@@ -7,5 +7,6 @@
     "rustc",
     "tlsv"
   ],
-  "sonarlint.analysisExcludesStandalone": "**/Dockerfile"
+  "sonarlint.analysisExcludesStandalone": "**/Dockerfile",
+  "terminal.integrated.fontFamily": "'MesloLGM Nerd Font Mono', monospace"
 }
