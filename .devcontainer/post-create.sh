@@ -16,7 +16,7 @@ cd .. && rm -rf fonts
 echo -e "${YELLOW}-> Install Oh My Posh and custom theme...${OFF}"
 curl -s https://ohmyposh.dev/install.sh | bash -s
 mkdir -p "$HOME/.oh-my-posh"
-cp .devcontainer/configs/p10k_lean.omp.json "$HOME/.oh-my-posh/p10k_lean.omp.json"
+curl "https://raw.githubusercontent.com/jsadeli/dotfiles/refs/heads/main/configs/p10k_lean.omp.json" -o "$HOME/.oh-my-posh/p10k_lean.omp.json"
 
 echo -e "${YELLOW}-> Copy customized zsh config...${OFF}"
 cp .devcontainer/configs/.zshrc "$HOME/.zshrc"
